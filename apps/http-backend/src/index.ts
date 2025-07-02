@@ -4,6 +4,7 @@ import { JWT_SECRET } from '@repo/backend-common/config';
 import { CreateUserSchema , SigninSchema , CreateRoomSchema } from '@repo/common/types'
 import { prismaClient } from '@repo/db/client';
 const app = express();
+app.use(express.json())
 
 app.post("/signup" ,async (req,res) =>{
 
@@ -19,8 +20,8 @@ app.post("/signup" ,async (req,res) =>{
            data:{
                email:parsedData.data?.username,
                password: parsedData.data?.password,
-               name : parsedData.data?.username
-    }
+               name : parsedData.data?.name
+           }
     })
     res.json({
         userId : "123"
